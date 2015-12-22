@@ -1,57 +1,57 @@
 /*jshint node:true*/
 module.exports = function(app) {
   var express = require('express');
-  var usersRouter = express.Router();
+  var notesRouter = express.Router();
 
   var bodyParser = require('body-parser');
   app.use(bodyParser.json());
 
   var nedb = require('nedb');
-  var userDB = new nedb({ filename: 'users', autoload: true });
+  var noteDB = new nedb({ filename: 'notes', autoload: true });
 
-  usersRouter.get('/', function(req, res) {
-    userDB.find(req.query).exec(function(err, users) {
+  notesRouter.get('/', function(req, res) {
+    noteDB.find(req.query).exec(function(err, notes) {
       res.send({
-        'users': users
+        'notes': notes
       });
     });
   });
 
-  usersRouter.post('/', function(req, res) {
-    userDB.find({}).sort({id: -1}).limit(1).exec(function(err, users) {
-      if(users.length != 0)
-        req.body.user.id = users[0].id + 1;
+  notesRouter.post('/', function(req, res) {
+    noteDB.find({}).sort({id: -1}).limit(1).exec(function(err, notes) {
+      if(notes.length != 0)
+        req.body.note.id = notes[0].id + 1;
       else
-        req.body.user.id = 1;
+        req.body.note.id = 1;
 
-      userDB.insert(req.body.user, function(err, newUser) {
+      noteDB.insert(req.body.note, function(err, newUser) {
         res.status(201);
         res.send(
           JSON.stringify({
-            user: newUser
+            note: newUser
           })
         );
       });
     });
   });
 
-  usersRouter.get('/:id', function(req, res) {
+  notesRouter.get('/:id', function(req, res) {
     res.send({
-      'users': {
+      'notes': {
         id: req.params.id
       }
     });
   });
 
-  usersRouter.put('/:id', function(req, res) {
+  notesRouter.put('/:id', function(req, res) {
     res.send({
-      'users': {
+      'notes': {
         id: req.params.id
       }
     });
   });
 
-  usersRouter.delete('/:id', function(req, res) {
+  notesRouter.delete('/:id', function(req, res) {
     res.status(204).end();
   });
 
@@ -64,6 +64,6 @@ module.exports = function(app) {
   // After installing, you need to `use` the body-parser for
   // this mock uncommenting the following line:
   //
-  //app.use('/api/users', require('body-parser').json());
-  app.use('/api/users', usersRouter);
+  //app.use('/api/notes', require('body-parser').json());
+  app.use('/api/notes', notesRouter);
 };
