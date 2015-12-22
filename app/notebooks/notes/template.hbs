@@ -11,7 +11,7 @@
       <ul>
         {{#each model as |note|}}
           <li>
-            {{#link-to 'notebooks.notes.index' note.id}}
+            {{#link-to 'notebooks.notes.note' note.id}}
               {{note.title}}
             {{/link-to}}
             <button {{action 'deleteNote' note}}>Delete</button>
