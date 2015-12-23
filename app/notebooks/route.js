@@ -15,7 +15,7 @@ export default Ember.Route.extend({
         console.log('save successful');
         this.controller.set('title', null);
         this.refresh();
-      }, function(){
+      }, ()=> {
         console.log('save failed');
       });
     }
