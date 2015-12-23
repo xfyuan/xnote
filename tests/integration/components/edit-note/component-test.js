@@ -11,7 +11,8 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{edit-note}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$('button:first').text().trim(), "save");
+  assert.equal(this.$('button:last').text().trim(), "close");
 
   // Template block usage:" + EOL +
   this.render(hbs`
@@ -20,5 +21,5 @@ test('it renders', function(assert) {
     {{/edit-note}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('div:last').text().trim(), 'template block text');
 });
