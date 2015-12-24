@@ -9,4 +9,4 @@ dependencies:
     - "./bower_components"
 test:
   post:
-    - ember test
+    - npm test
