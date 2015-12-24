@@ -1,5 +1,9 @@
 # Xnote
 
+[![Build Status](https://travis-ci.org/xfyuan/xnote.svg?branch=master)](https://travis-ci.org/xfyuan/xnote)
+
+[![Circle CI](https://circleci.com/gh/xfyuan/xnote.svg?style=svg)](https://circleci.com/gh/xfyuan/xnote)
+
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
