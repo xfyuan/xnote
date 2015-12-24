@@ -4,6 +4,7 @@ machine:
 dependencies:
   pre:
     - npm install -g bower
+    - npm rebuild node-sass
   override:
     - npm i
     - bower i
