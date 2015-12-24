@@ -8,11 +8,11 @@ export default Ember.Route.extend(ValidationFunctions, {
       if (this.isValidEmail(name)) {
         var user = this.store.createRecord('user', { name: name });
         user.save().then( ()=> {
-          console.log('save successful');
+          this.logger.log('save successful');
           this.controller.set('message', 'A new user with name' + this.controller.get('name') + ' was added!');
           this.controller.set('name', null);
         }, ()=> {
-          console.log('save failed!');
+          this.logger.log('save failed!');
         });
       } else {
         alert('Invalid email address');
